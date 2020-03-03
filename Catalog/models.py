@@ -21,6 +21,13 @@ class Manufacturer(models.Model):
     description = models.TextField("Описание")
     url = models.SlugField(max_length=100, unique=True)
 
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Производитель"
+        verbose_name_plural = "Производители"
+
 
 class Product(models.Model):
     """Товар"""
