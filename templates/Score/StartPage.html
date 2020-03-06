@@ -18,19 +18,99 @@
   <a class="btn btn-outline-primary" href="#">Sign up</a>
 </div>
 
-<div class="container">
-    <div class="row">
-        <div class="col-4 offset
-            {% for product in all_info %}
-            <div class="alert alert-light">
+<div class="container-fluid">
+
+  <div class="row">
+    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+    <h5 class="my-0 mr-md-auto font-weight-normal">All category:</h5>
+        {% for category in all_info_category %}
+        <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+             <li class="nav-item">
+                <a class="nav-link active" href="#">
+                    {{ category.name }} <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            </ul>
+        </div>
+        {% endfor %}
+    </nav>
+
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+        <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+            <h1 class="display-4">Product list</h1>
+            <p class="lead">Description</p>
+            <div class="container">
                 <div class="row">
-                    <div class="col-9">
-                        <b>Наименование:</b> {{ product.title }}<br>
-                        <b>Цена:</b> {{ product.price }}<a> рублей</a><br>
+                    {% for product in all_info_product %}
+                    <div class="col-lg-4 col-lg-offset-4">
+                            <div class="card-deck mb-3 text-left">
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="card-header">
+                                        <h4 class="my-0 font-weight-normal">Product</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <h1 class="card-title pricing-card-title">{{ product.price }} <small class="lead">рублей</small></h1>
+                                        <ul class="list-unstyled mt-3 mb-4">
+                                            <div class="container">
+                                                <div class="">
+                                                    {% load static %}
+                                                    <img src="{{ MEDIA_URL }}{{ product.picture.url }}" class="img-fluid">
+                                                </div>
+                                            </div>
+                                            <b>Наименование:</b> {{ product.title }}<br>
+                                            <b>Категория:</b> {{ product.category }}<br>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                     </div>
+                    {% endfor %}
                 </div>
             </div>
-            {% endfor %}
         </div>
-    </div>
+      </main>
+  </div>
 </div>
+
+<div class="container">
+<footer class="pt-4 my-md-8 pt-md-5">
+    <div class="row">
+      <div class="col-12 col-md">
+        <img class="mb-2" src="/docs/4.4/assets/brand/bootstrap-solid.svg" alt="" width="24" height="24">
+        <small class="d-block mb-3 text-muted">© 2017-2019</small>
+      </div>
+      <div class="col-6 col-md">
+        <h5>Features</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="text-muted" href="#">Cool stuff</a></li>
+          <li><a class="text-muted" href="#">Random feature</a></li>
+          <li><a class="text-muted" href="#">Team feature</a></li>
+          <li><a class="text-muted" href="#">Stuff for developers</a></li>
+          <li><a class="text-muted" href="#">Another one</a></li>
+          <li><a class="text-muted" href="#">Last time</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-md">
+        <h5>Resources</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="text-muted" href="#">Resource</a></li>
+          <li><a class="text-muted" href="#">Resource name</a></li>
+          <li><a class="text-muted" href="#">Another resource</a></li>
+          <li><a class="text-muted" href="#">Final resource</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-md">
+        <h5>About</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="text-muted" href="#">Team</a></li>
+          <li><a class="text-muted" href="#">Locations</a></li>
+          <li><a class="text-muted" href="#">Privacy</a></li>
+          <li><a class="text-muted" href="#">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+</footer>
+</div>
+</body>

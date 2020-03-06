@@ -33,12 +33,17 @@ class Product(models.Model):
     """Товар"""
     title = models.CharField("Название товара", max_length=50)
     description = models.TextField("Описание")
-    picture = models.ImageField("Изображение", upload_to='Product_picture')
+    picture = models.ImageField("Изображение", upload_to='Product_picture', blank=True)
     date_of_manufacture = models.DateTimeField("Дата производства")
     price = models.PositiveSmallIntegerField("Цена", help_text="Указывать сумму в рублях")
     manufacturer = models.ForeignKey(Manufacturer, verbose_name="Производитель", on_delete=models.SET_NULL, null=True)
     category = models.ForeignKey(Category, verbose_name="Категория", on_delete=models.SET_NULL, null=True)
     url = models.SlugField(max_length=130, unique=True)
+
+    @property
+    def photo_url(self):
+        if self.picture and hasattr(self.picture, 'url'):
+            return self.picture.url
 
     def __str__(self):
         return self.title
